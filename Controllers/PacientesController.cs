@@ -59,10 +59,8 @@ public class PacientesController : ControllerBase
         {
             return BadRequest("ID do paciente não corresponde ao ID da URL.");
         }
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+
 
         var pacienteExistente = await _context.Pacientes.FindAsync(id);
 
@@ -72,9 +70,8 @@ public class PacientesController : ControllerBase
         }
 
         if (await _context.Pacientes.AnyAsync(p => (p.Cpf == paciente.Cpf || p.Email == paciente.Email) && p.Id != id))
-        {
             return BadRequest("CPF ou Email já cadastrado para outro paciente.");
-        }
+
 
         pacienteExistente.Nome = paciente.Nome;
         pacienteExistente.Email = paciente.Email;

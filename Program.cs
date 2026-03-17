@@ -1,4 +1,5 @@
 using Consultorio.Api.Data;
+using Consultorio.Api.Services;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
@@ -6,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+
+builder.Services.AddHttpClient<ViaCepService>();
 
 
 builder.Services.AddDbContext<AppDbContext>(optionsAction =>
@@ -25,7 +28,7 @@ if (app.Environment.IsDevelopment())
     app.MapScalarApiReference(options =>
     {
         options.WithTitle("Api Consultório")
-        .WithTheme(ScalarTheme.DeepSpace);
+        .WithTheme(ScalarTheme.BluePlanet);
 
     });
 }
