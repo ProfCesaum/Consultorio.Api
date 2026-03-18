@@ -16,12 +16,7 @@ public class PacientesController : ControllerBase
         _context = context;
     }
 
-    [HttpGet]
-    public async Task<IActionResult> ListarTodosPacientes()
-    {
-        var pacientes = await _context.Pacientes.ToListAsync();
-        return Ok(pacientes);
-    }
+
 
     [HttpGet("{id}")]
     public async Task<IActionResult> ListarPacientePorId(int id)
